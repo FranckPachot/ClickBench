@@ -1,6 +1,13 @@
+set work_mem=2147483647;
+/*
+explain SELECT COUNT(*) FROM hits;
+explain SELECT COUNT(*) FROM hits;
+*/
+
 SELECT COUNT(*) FROM hits;
 SELECT COUNT(*) FROM hits WHERE AdvEngineID <> 0;
-SELECT SUM(AdvEngineID), COUNT(*), AVG(ResolutionWidth) FROM hits;
+SELECT SUM(AdvEngineID), COUNT(*), SUM(ResolutionWidth)/count(ResolutionWidth) as "avg" FROM hits;
+SELECT SUM(UserID)/count(UserID) as "avg" FROM hits;
 SELECT AVG(UserID) FROM hits;
 SELECT COUNT(DISTINCT UserID) FROM hits;
 SELECT COUNT(DISTINCT SearchPhrase) FROM hits;
